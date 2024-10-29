@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SortController {
     @FXML
-    private Button uploadButton;
+    private Button csvUploadButton;
 
     @FXML
     private ChoiceBox<String> columnChoiceBox;
@@ -22,11 +22,11 @@ public class SortController {
     private Button sortButton;
 
     @FXML
-    private TableView<List<String>> tableView;
+    private TableView<List<String>> csvTableView;
 
 
     @FXML
-    private Label statusLabel;
+    private Label message;
 
 
     private String[] headers;
@@ -36,7 +36,7 @@ public class SortController {
     private void handleFileUpload() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-        File file = fileChooser.showOpenDialog(uploadButton.getScene().getWindow());
+        File file = fileChooser.showOpenDialog(csvUploadButton.getScene().getWindow());
 
         if (file != null) {
             try (CSVReader reader = new CSVReader(new FileReader(file))) {
@@ -44,12 +44,12 @@ public class SortController {
                 if (headers != null) {
                     setupTable(headers);
                     loadData(reader);
-                    statusLabel.setText("Status: File uploaded successfully.");
+                    message.setText("Status: CSV File uploaded successfully.");
                 } else {
-                    statusLabel.setText("Error: No header found in the CSV file.");
+                    message.setText("Error: No header found in the CSV file.");
                 }
             } catch (Exception ex) {
-                statusLabel.setText("Error: " + ex.getMessage());
+                message.setText("Error: " + ex.getMessage());
                 ex.printStackTrace();
             }
         }
@@ -59,12 +59,12 @@ public class SortController {
 
 
     private void setupTable(String[] headers) {
-        tableView.getColumns().clear();
+        csvTableView.getColumns().clear();
         for (String header : headers) {
             TableColumn<List<String>, String> column = new TableColumn<>(header);
             int colIndex = List.of(headers).indexOf(header);
             column.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().get(colIndex)));
-            tableView.getColumns().add(column);
+            csvTableView.getColumns().add(column);
         }
     }
 
@@ -77,9 +77,9 @@ public class SortController {
                     data.add(FXCollections.observableArrayList(line));
                 }
             }
-            tableView.setItems(data);
+            csvTableView.setItems(data);
         } catch (Exception ex) {
-            statusLabel.setText("Error loading data: " + ex.getMessage());
+            message.setText("Error loading data: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
