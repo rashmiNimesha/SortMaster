@@ -40,18 +40,17 @@ public class SortController {
 
         if (file != null) {
             try (CSVReader reader = new CSVReader(new FileReader(file))) {
-                headers = reader.readNext(); // Read the header
-                if (headers != null) { // Check if headers are not null
+                headers = reader.readNext();
+                if (headers != null) {
                     setupTable(headers);
                     loadData(reader);
-                    populateColumnChoiceBox(headers);
                     statusLabel.setText("Status: File uploaded successfully.");
                 } else {
                     statusLabel.setText("Error: No header found in the CSV file.");
                 }
             } catch (Exception ex) {
                 statusLabel.setText("Error: " + ex.getMessage());
-                ex.printStackTrace(); // Print stack trace for debugging
+                ex.printStackTrace();
             }
         }
 
@@ -74,27 +73,15 @@ public class SortController {
         String[] line;
         try {
             while ((line = reader.readNext()) != null) {
-                data.add(List.of(line));
+                if (line.length == headers.length) {
+                    data.add(FXCollections.observableArrayList(line));
+                }
             }
             tableView.setItems(data);
         } catch (Exception ex) {
             statusLabel.setText("Error loading data: " + ex.getMessage());
-            ex.printStackTrace(); // Print stack trace for debugging
+            ex.printStackTrace();
         }
     }
 
-    private void populateColumnChoiceBox(String[] headers) {
-        columnChoiceBox.getItems().clear();
-        for (String column : headers) {
-            if (isNumericColumn(column)) {
-                columnChoiceBox.getItems().add(column);
-            }
-        }
-
-    }
-
-    private boolean isNumericColumn(String column) {
-        // Implement logic here to check if the column data is numeric
-        return true; // For simplicity, assume all columns are numeric for now
-    }
 }
