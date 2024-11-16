@@ -1,5 +1,6 @@
 package org.example.sortingapplication.controller;
 
+import org.example.sortingapplication.model.HeapSort;
 import org.example.sortingapplication.model.ShellSort;
 
 import java.util.List;
@@ -12,6 +13,14 @@ public class SortingController {
         shellSort.sort(dataItem);
         long endTime = System.nanoTime();
         return (endTime - startTime);
+    }
+
+    public long runHeapSort(List<Double> data) {
+        long startTime = System.nanoTime();
+        HeapSort heapSort = new HeapSort();
+        heapSort.sort(data);
+        long endTime = System.nanoTime();
+        return (endTime - startTime) ; // Convert to milliseconds
     }
 
 }
