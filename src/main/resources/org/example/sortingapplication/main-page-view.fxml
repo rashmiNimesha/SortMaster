@@ -34,7 +34,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="64.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Analyze" GridPane.columnIndex="2" GridPane.hgrow="NEVER">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="64.0" mnemonicParsing="false" onAction="#handleAnalyze" prefHeight="40.0" prefWidth="128.0" text="Analyze" GridPane.columnIndex="2" GridPane.hgrow="NEVER">
                <padding>
                   <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
                </padding>
