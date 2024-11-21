@@ -18,6 +18,6 @@ public class InsertionSort {
         }
 
         long endTime = System.nanoTime();
-        return (endTime - startTime) / 1_000_000; // Time in milliseconds
+        return (endTime - startTime) / 1_000_000;
     }
 }

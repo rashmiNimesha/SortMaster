@@ -1,9 +1,6 @@
 package org.example.sortingapplication.controller;
 
-import org.example.sortingapplication.model.HeapSort;
-import org.example.sortingapplication.model.MergeSort;
-import org.example.sortingapplication.model.QuickSort;
-import org.example.sortingapplication.model.ShellSort;
+import org.example.sortingapplication.model.*;
 
 import java.util.List;
 
@@ -36,6 +33,14 @@ public class SortingController {
         long startTime = System.nanoTime();
         HeapSort heapSort = new HeapSort();
         heapSort.sort(data);
+        long endTime = System.nanoTime();
+        return (endTime - startTime) ;
+    }
+
+    public long runInsertionSort(List<Double> data) {
+        long startTime = System.nanoTime();
+        InsertionSort insertionSort = new InsertionSort();
+        insertionSort.sort(data);
         long endTime = System.nanoTime();
         return (endTime - startTime) ;
     }
