@@ -28,6 +28,13 @@ public class FileController {
     private VBox resultsBox;
 
     private final CSVHandler csvHandler = new CSVHandler();
+    private final PerformanceController performanceController = new PerformanceController();
+
+    @FXML
+    public void initialize() {
+        performanceController.setBarChart(barChart);
+        performanceController.setResultsBox(resultsBox);
+    }
 
     @FXML
     public void handleOpenFile() {
@@ -52,6 +59,17 @@ public class FileController {
             }
         } else {
             showError("No File Selected", "Please select a CSV file to proceed.");
+        }
+    }
+
+    @FXML
+    public void handleAnalyze() {
+        String selectedColumn = columnComboBox.getValue();
+        if (selectedColumn != null) {
+            int columnIndex = columnComboBox.getItems().indexOf(selectedColumn);
+            performanceController.handleAnalyze(tableView.getItems(), columnIndex);
+        } else {
+            showError("No Column Selected", "Please select a column from the dropdown to analyze.");
         }
     }
 
