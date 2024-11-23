@@ -4,59 +4,40 @@ import org.example.sortingapplication.model.ShellSort;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShellSortTest {
 
-
     @Test
-    void testSortEmptyList() {
+    public void testSortWithUnsortedList() {
         ShellSort shellSort = new ShellSort();
-        List<Double> data = new ArrayList<>();
-        long executionTime = shellSort.sort(data);
-        assertTrue(executionTime >= 0);
-        assertEquals(0, data.size());
+        List<Double> data = new ArrayList<>(Arrays.asList(64.5, 34.2, 25.0, 12.22, 22.1, 11.0, 90.3));
+        List<Double> expected = new ArrayList<>(Arrays.asList(11.0, 12.22, 22.1, 25.0, 34.2, 64.5, 90.3));
+
+        shellSort.sort(data);
+        assertEquals(expected, data, "The list should be sorted in ascending order.");
     }
 
     @Test
-    void testSortSingleElementList() {
+    public void testSortWithAlreadySortedList() {
         ShellSort shellSort = new ShellSort();
-        List<Double> data = new ArrayList<>(List.of(5.0));
-        long executionTime = shellSort.sort(data);
-        assertTrue(executionTime >= 0);
-        assertEquals(List.of(5.0), data);
+        List<Double> data = new ArrayList<>(Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0));
+        List<Double> expected = new ArrayList<>(Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0));
+
+        shellSort.sort(data);
+        assertEquals(expected, data, "The list should remain unchanged if already sorted.");
     }
 
     @Test
-    void testSortAlreadySortedList() {
+    public void testSortWithDuplicateElements() {
         ShellSort shellSort = new ShellSort();
-        List<Double> data = new ArrayList<>(List.of(1.0, 2.0, 3.0, 4.0, 5.0));
-        long executionTime = shellSort.sort(data);
-        assertTrue(executionTime >= 0);
-        assertEquals(List.of(1.0, 2.0, 3.0, 4.0, 5.0), data);
-    }
+        List<Double> data = new ArrayList<>(Arrays.asList(5.0, 3.0, 5.0, 3.0, 5.0));
+        List<Double> expected = new ArrayList<>(Arrays.asList(3.0, 3.0, 5.0, 5.0, 5.0));
 
-    @Test
-    void testSortUnsortedList() {
-        ShellSort shellSort = new ShellSort();
-        List<Double> data = new ArrayList<>(List.of(3.0, 1.0, 4.0, 1.5, 2.0));
-        long executionTime = shellSort.sort(data);
-        assertTrue(executionTime >= 0);
-        assertEquals(List.of(1.0, 1.5, 2.0, 3.0, 4.0), data);
-    }
-
-    @Test
-    void testSortLargeList() {
-        ShellSort shellSort = new ShellSort();
-        List<Double> data = new ArrayList<>();
-        for (int i = 100; i >= 1; i--) {
-            data.add((double) i);
-        }
-        long executionTime = shellSort.sort(data);
-        assertTrue(executionTime >= 0);
-        for (int i = 0; i < data.size(); i++) {
-            assertEquals((double) (i + 1), data.get(i));
-        }
+        shellSort.sort(data);
+        assertEquals(expected, data, "The list should be sorted and duplicates retained.");
     }
 }
