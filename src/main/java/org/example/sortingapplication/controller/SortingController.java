@@ -30,6 +30,7 @@ public class SortingController {
     }
 
     public long runHeapSort(List<Double> data) {
+        // Measure the execution time of Heap Sort in nanoseconds
         long startTime = System.nanoTime();
         HeapSort heapSort = new HeapSort();
         heapSort.sort(data);
@@ -38,6 +39,7 @@ public class SortingController {
     }
 
     public long runInsertionSort(List<Double> data) {
+        // Measure the execution time of Insertion Sort in nanoseconds.
         long startTime = System.nanoTime();
         InsertionSort insertionSort = new InsertionSort();
         insertionSort.sort(data);

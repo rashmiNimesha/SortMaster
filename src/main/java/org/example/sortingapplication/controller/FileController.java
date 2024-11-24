@@ -28,7 +28,7 @@ public class FileController {
     @FXML
     private VBox resultsBox;
 
-    private final CSVHandler csvHandler = new CSVHandler();
+    private final CSVHandler csvHandler = new CSVHandler(); // Utility to handle reading CSV files
     private final PerformanceController performanceController = new PerformanceController();
 
     @FXML
@@ -39,26 +39,31 @@ public class FileController {
 
     @FXML
     public void handleOpenFile() {
+        // Open a dialog for the user to select a CSV file
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open CSV File");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
 
-        File selectedFile = fileChooser.showOpenDialog(null);
+        File selectedFile = fileChooser.showOpenDialog(null); // Get the file chosen by the user
         if (selectedFile != null) {
-            fileNameField.setText(selectedFile.getName());
+            fileNameField.setText(selectedFile.getName()); // Show the file name in the text field
             try {
+                // Read the CSV file's headers and data
                 List<String> headers = csvHandler.getHeaders(selectedFile);
-                csvHandler.createTableColumns(headers, tableView);
+                csvHandler.createTableColumns(headers, tableView); // Set up table columns
                 ObservableList<ObservableList<String>> data = csvHandler.getData(selectedFile);
-                tableView.setItems(data);
+                tableView.setItems(data); // Display the data in the table
 
+                // Populate the dropdown with the file's column headers
                 columnComboBox.getItems().clear();
                 columnComboBox.getItems().addAll(headers);
             } catch (IOException e) {
+                // Handle errors if the file cannot be read
                 showError("Error reading CSV file", "An error occurred while reading the CSV file.");
                 e.printStackTrace();
             }
         } else {
+            // Show a message if no file is selected
             showError("No File Selected", "Please select a CSV file to proceed.");
         }
     }
@@ -75,6 +80,7 @@ public class FileController {
     }
 
     private void showError(String title, String content) {
+        // Shows an error dialog with a specified title and message to inform the user about an issue
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
