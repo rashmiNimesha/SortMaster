@@ -4,6 +4,8 @@ import java.util.List;
 
 public class ShellSort {
     public void sort(List<Double> data) {
+        //Sort data in the List
+        // get the list size
         int n = data.size();
         for (int gap = n / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < n; i++) {

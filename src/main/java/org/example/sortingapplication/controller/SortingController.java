@@ -22,6 +22,7 @@ public class SortingController {
     }
 
     public long runShellSort(List<Double> dataItem) {
+        // Calculating the execution time by calling shellSort instance
         long startTime = System.nanoTime();
         ShellSort shellSort = new ShellSort();
         shellSort.sort(dataItem);
