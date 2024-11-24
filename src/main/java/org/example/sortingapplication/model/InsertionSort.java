@@ -4,20 +4,19 @@ import java.util.List;
 
 public class InsertionSort {
     public long sort(List<Double> data) {
-        long startTime = System.nanoTime();
+        int n = data.size();
 
-        for (int i = 1; i < data.size(); i++) {
+        for (int i = 1; i < n; i++) {
             double key = data.get(i);
             int j = i - 1;
 
             while (j >= 0 && data.get(j) > key) {
                 data.set(j + 1, data.get(j));
-                j = j - 1;
+                j--;
             }
+
             data.set(j + 1, key);
         }
-
-        long endTime = System.nanoTime();
-        return (endTime - startTime) / 1_000_000;
+        return 0;
     }
 }
