@@ -1,4 +1,4 @@
-package org.example.sortingapplication.test.model;
+package org.example.sortingapplication.model;
 
 import org.example.sortingapplication.model.MergeSort;
 import org.junit.jupiter.api.Test;

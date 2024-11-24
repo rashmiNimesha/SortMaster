@@ -62,7 +62,6 @@ public class PerformanceController {
         mergeSortTime = sortingController.runMergeSort(new ArrayList<>(numericData));
         heapSortTime = sortingController.runHeapSort(new ArrayList<>(numericData));
         shellSortTime = sortingController.runShellSort(new ArrayList<>(numericData));
-        System.out.println(numericData);
 
         Platform.runLater(() -> {
             addDataToChart("QuickSort", quickSortTime);
