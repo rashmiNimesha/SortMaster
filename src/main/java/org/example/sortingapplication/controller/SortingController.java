@@ -6,19 +6,19 @@ import java.util.List;
 
 public class SortingController {
     public long runQuickSort(List<Double> data) {
-        long startTime = System.nanoTime();
+        long startTime = System.nanoTime(); // Get start time
         QuickSort quickSort = new QuickSort();
         quickSort.sort(data);
-        long endTime = System.nanoTime();
-        return (endTime - startTime) ;
+        long endTime = System.nanoTime(); // Get end time
+        return (endTime - startTime) ; // Calculate the time taken
     }
 
     public long runMergeSort(List<Double> data) {
-        long startTime = System.nanoTime();
+        long startTime = System.nanoTime(); // Get start time
         MergeSort mergeSort = new MergeSort();
         mergeSort.sort(data);
-        long endTime = System.nanoTime();
-        return (endTime - startTime);
+        long endTime = System.nanoTime(); // Get end time
+        return (endTime - startTime); // Calculate the time taken
     }
 
     public long runShellSort(List<Double> dataItem) {
