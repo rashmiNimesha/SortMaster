@@ -88,6 +88,7 @@ public class FileController {
         alert.showAndWait();
     }
 
+    // Displaying box in Help menu
     public void showAboutDialog() {
         Stage aboutStage = new Stage();
         aboutStage.initModality(Modality.APPLICATION_MODAL);
@@ -95,6 +96,7 @@ public class FileController {
         Label appDetails = new Label("Developed by \n\tWeerasekara W.M.S.R. \n\tNimesha G.R. \n\tRajapaksha R.P.N.D.\nA tool for sorting algorithm performance analysis.\nSortMaster v1.0");
         appDetails.setWrapText(true);
 
+        //close button
         Button closeButton = new Button("Close");
         closeButton.setOnAction(e -> aboutStage.close());
 
