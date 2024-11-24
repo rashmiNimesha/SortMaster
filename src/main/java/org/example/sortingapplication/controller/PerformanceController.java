@@ -24,6 +24,7 @@ public class PerformanceController {
     Long mergeSortTime;
     Long heapSortTime;
     Long shellSortTime;
+    Long insertionSortTime;
 
     public void setResultsBox(VBox resultsBox) {
         this.resultsBox = resultsBox;
@@ -62,12 +63,14 @@ public class PerformanceController {
         mergeSortTime = sortingController.runMergeSort(new ArrayList<>(numericData));
         heapSortTime = sortingController.runHeapSort(new ArrayList<>(numericData));
         shellSortTime = sortingController.runShellSort(new ArrayList<>(numericData));
+        insertionSortTime = sortingController.runInsertionSort(new ArrayList<>(numericData));
 
         Platform.runLater(() -> {
             addDataToChart("QuickSort", quickSortTime);
             addDataToChart("MergeSort", mergeSortTime);
             addDataToChart("HeapSort", heapSortTime);
             addDataToChart("ShellSort", shellSortTime);
+            addDataToChart("InsertionSort", insertionSortTime);
         });
     }
 
