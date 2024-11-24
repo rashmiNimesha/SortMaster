@@ -2,13 +2,14 @@ package org.example.sortingapplication.controller;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.scene.control.Alert;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.sortingapplication.util.CSVHandler;
 
 import java.io.File;
@@ -79,5 +80,24 @@ public class FileController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    public void showAboutDialog() {
+        Stage aboutStage = new Stage();
+        aboutStage.initModality(Modality.APPLICATION_MODAL);
+        aboutStage.setTitle("About SortMaster");
+        Label appDetails = new Label("Developed by \n\tWeerasekara W.M.S.R. \n\tNimesha G.R. \n\tRajapaksha R.P.N.D.\nA tool for sorting algorithm performance analysis.\nSortMaster v1.0");
+        appDetails.setWrapText(true);
+
+        Button closeButton = new Button("Close");
+        closeButton.setOnAction(e -> aboutStage.close());
+
+        VBox layout = new VBox(10, appDetails, closeButton);
+        layout.setPadding(new Insets(20, 20, 20, 20));
+        layout.setStyle("-fx-alignment: center;");
+
+        Scene scene = new Scene(layout, 300, 200);
+        aboutStage.setScene(scene);
+        aboutStage.show();
     }
 }
